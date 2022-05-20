@@ -7,8 +7,8 @@
         <h2>Edit Events</h2>
     </div>
 
-    <a class="btn btn-primary" href="{{ route('events.index') }}">Back</a>
 </div>
+<a class="btn btn-primary" href="{{ route('events.index') }}">Back</a>
 
 @if ($errors-> any())
     <div class="alert alert-danger">

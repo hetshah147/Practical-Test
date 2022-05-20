@@ -22,35 +22,35 @@
     </div>
 @endif
 
-<form action="{{ route('events.store') }}" method="POST">
+<form id="eventForm" action="{{ route('events.store') }}" method="POST" novalidate>
 
     @csrf
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <label>Event Name</label>
-                <input type="text" name="title" class="form-control" id="title">
+                <input type="text" name="title" class="form-control" id="title" required data-parsley-pattern="[a-zA-z]+$" data-parsley-trigger="keyup">
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <label>Start Date</label>
-                <input type="date" name="start_date" class="form-control" id="start_date">
+                <input type="date" name="start_date" class="form-control" id="start_date" required data-parsley-trigger="keyup">
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <label>End Date</label>
-                <input type="date" name="end_date" class="form-control" id="end_date">
+                <input type="date" name="end_date" class="form-control" id="end_date" required data-parsley-trigger="keyup">
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <label>Recurrence</label>
-                <input type="date" name="recurrence" class="form-control" id="recurrence">
+                <input type="text" name="recurrence" class="form-control" id="recurrence" required data-parsley-trigger="keyup">
             </div>
         </div>
 
@@ -59,4 +59,10 @@
         </div>
     </div>
 </form>
+
+<script>
+    $(function(){
+        $("#eventForm").parsley();
+    });
+</script>
 @endsection

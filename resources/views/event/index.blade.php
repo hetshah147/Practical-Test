@@ -12,38 +12,40 @@
     </div>
 </div>
 
-@if ($message = Session::get('success'))
+{{-- @if ($message = Session::get('success'))
     <div class="alert alert-success">
         <p>{{ message }}</p>
     </div>
-@endif
+@endif --}}
 
-<table>
-    <tr>
-        <th>Event</th>
-        <th>Create Date</th>
-        <th>End Date</th>
-        <th>Recurrence</th>
-    </tr>
-    @foreach ($events as $event)
-    <tr>
-        <td>{{ $event->title }}</td>
-        <td>{{ $event->start_date }}</td>
-        <td>{{ $event->end_date }}</td>
-        <td>{{ $event->recurrence }}</td>
-        <td>
-            <form action="{{ route('events.destroy',$event->id) }}" method="POST">
-                <a href="{{ route('events.show',$event->id) }}">Show</a>
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>Event</th>
+            <th>Create Date</th>
+            <th>End Date</th>
+            <th>Recurrence</th>
+        </tr>
+        @foreach ($events as $event)
+        <tr>
+            <td>{{ $event->title }}</td>
+            <td>{{ $event->start_date }}</td>
+            <td>{{ $event->end_date }}</td>
+            <td>{{ $event->recurrence }}</td>
+            <td>
+                <form action="{{ route('events.destroy',$event->id) }}" method="POST">
+                    {{-- <a href="{{ route('events.show',$event->id) }}">Show</a> --}}
 
-                <a href="{{ route('events.edit',$event->id) }}">Edit</a>
+                    <a href="{{ route('events.edit',$event->id) }}" class="btn btn-success">Edit</a>
 
-                @csrf
-                @method('DELETE')
+                    @csrf
+                    @method('DELETE')
 
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
-        </td>
-    </tr>
-    @endforeach
-</table>
+                    {{-- <button type="submit" class="btn btn-danger">Delete</button> --}}
+                </form>
+            </td>
+        </tr>
+        @endforeach
+    </table>
+</div>
 @endsection

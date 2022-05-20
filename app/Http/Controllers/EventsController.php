@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use App\Http\Requests\EventRequest;
 
 class EventsController extends Controller
 {
@@ -56,7 +57,8 @@ class EventsController extends Controller
      */
     public function show($id)
     {
-        //
+        $event = Event::find($id);
+        return view('event.show', compact('event'));
     }
 
     /**
@@ -67,7 +69,8 @@ class EventsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $event = Event::find($id);
+        return view('event.edit', compact('event'));
     }
 
     /**
@@ -77,9 +80,14 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Event $events)
     {
-        //
+        $request->validate([
+
+        ]);
+
+        $events->update($request->all());
+        return redirect()->route('events.index')->with('success','Event Updated Successfully');
     }
 
     /**
@@ -88,8 +96,10 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Event $events)
     {
-        //
+        // $events -> delete();
+
+        // return redirect()->route('events.index')->with('success','Events Deleted Successfully');
     }
 }
